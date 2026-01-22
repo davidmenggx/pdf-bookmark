@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pdf-bookmark</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 4C5 2.89543 5.89543 2 7 2H17C18.1046 2 19 2.89543 19 4V22L12 17L5 22V4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>pdf-bookmark</h1>
+        <p class="subtitle" id="pdfName">No PDF detected</p>
+      </div>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 6.31412L18.5 5.5M6.31412 17.69L5.5 18.5M17.6859 17.69L18.5 18.5M21 12H20M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </header>
+
+    <div class="no-pdf-message" id="noPdfMessage">
+      Open a PDF to create bookmarks
+    </div>
+
+    <div class="pdf-content" id="pdfContent">
+      <section class="add-section" id="addSection">
+        <div class="section-header">
+          <h2>New Bookmark</h2>
+          <button class="toggle-btn" id="toggleAdd" aria-label="Toggle add section">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="add-form" id="addForm">
+          <div class="input-group">
+            <label for="bookmarkName">Name</label>
+            <input type="text" id="bookmarkName" placeholder="Enter bookmark name..." autocomplete="off">
+          </div>
+          
+          <div class="input-row">
+            <div class="input-group page-input">
+              <label for="pageNumber">Page</label>
+              <input type="number" id="pageNumber" min="1" value="1">
+            </div>
+            
+            <div class="input-group color-input">
+              <label>Color</label>
+              <div class="color-picker" id="colorPicker">
+                <button class="color-swatch active" data-color="#FF4D4D" style="--swatch-color: #FF4D4D"></button>
+                <button class="color-swatch" data-color="#FF824D" style="--swatch-color: #FF824D"></button>
+                <button class="color-swatch" data-color="#FFB347" style="--swatch-color: #FFB347"></button>
+                <button class="color-swatch" data-color="#FFD947" style="--swatch-color: #FFD947"></button>
+                <button class="color-swatch" data-color="#F9F871" style="--swatch-color: #F9F871"></button>
+                <button class="color-swatch" data-color="#B9F674" style="--swatch-color: #B9F674"></button>
+                <button class="color-swatch" data-color="#74F6A7" style="--swatch-color: #74F6A7"></button>
+                <button class="color-swatch" data-color="#47D9C4" style="--swatch-color: #47D9C4"></button>
+                <button class="color-swatch" data-color="#4DBBFF" style="--swatch-color: #4DBBFF"></button>
+                <button class="color-swatch" data-color="#4D7AFF" style="--swatch-color: #4D7AFF"></button>
+                <button class="color-swatch" data-color="#7A4DFF" style="--swatch-color: #7A4DFF"></button>
+                <button class="color-swatch" data-color="#B347FF" style="--swatch-color: #B347FF"></button>
+                <button class="color-swatch" data-color="#FF47D9" style="--swatch-color: #FF47D9"></button>
+                <button class="color-swatch" data-color="#FF4D82" style="--swatch-color: #FF4D82"></button>
+
+                <!-- <button class="color-swatch active" data-color="#3B82F6" style="--swatch-color: #3B82F6" title="Blue"></button>
+                <button class="color-swatch" data-color="#10B981" style="--swatch-color: #10B981" title="Green"></button>
+                <button class="color-swatch" data-color="#F59E0B" style="--swatch-color: #F59E0B" title="Amber"></button>
+                <button class="color-swatch" data-color="#EF4444" style="--swatch-color: #EF4444" title="Red"></button>
+                <button class="color-swatch" data-color="#8B5CF6" style="--swatch-color: #8B5CF6" title="Purple"></button>
+                <button class="color-swatch" data-color="#EC4899" style="--swatch-color: #EC4899" title="Pink"></button>
+                <button class="color-swatch" data-color="#6B7280" style="--swatch-color: #6B7280" title="Gray"></button>
+                <button class="color-swatch" data-color="#0EA5E9" style="--swatch-color: #0EA5E9" title="Sky"></button>
+                <button class="color-swatch" data-color="#14B8A6" style="--swatch-color: #14B8A6" title="Teal"></button>
+                <button class="color-swatch" data-color="#F97316" style="--swatch-color: #F97316" title="Orange"></button>
+                <button class="color-swatch" data-color="#84CC16" style="--swatch-color: #84CC16" title="Lime"></button>
+                <button class="color-swatch" data-color="#A855F7" style="--swatch-color: #A855F7" title="Violet"></button> -->
+              </div>
+            </div>
+          </div>
+          
+          <button class="btn btn-primary" id="addBookmark">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add Bookmark
+          </button>
+        </div>
+      </section>
+
+      <section class="bookmarks-section" id="bookmarksSection">
+        <div class="section-header">
+          <h2>Saved Bookmarks</h2>
+          <span class="bookmark-count" id="bookmarkCount">0</span>
+        </div>
+        
+        <div class="bookmarks-list" id="bookmarksList">
+          <div class="empty-state" id="emptyState">
+            <p>No bookmarks yet</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="context-menu" id="contextMenu">
+      <button class="context-item" id="editBookmark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M10.5 1.5L12.5 3.5L4.5 11.5H2.5V9.5L10.5 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Edit
+      </button>
+      <button class="context-item" id="changeColor">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="7" cy="7" r="2" fill="currentColor"/>
+        </svg>
+        Change Color
+      </button>
+      <div class="context-divider"></div>
+      <button class="context-item danger" id="deleteBookmark">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 4H12M5 4V3C5 2.44772 5.44772 2 6 2H8C8.55228 2 9 2.44772 9 3V4M11 4V11C11 11.5523 10.5523 12 10 12H4C3.44772 12 3 11.5523 3 11V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Delete
+      </button>
+    </div>
+
+    <div class="modal-overlay" id="editModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Edit Bookmark</h3>
+          <button class="modal-close" id="closeModal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <label for="editName">Name</label>
+            <input type="text" id="editName" autocomplete="off">
+          </div>
+          <div class="input-group">
+            <label for="editPage">Page</label>
+            <input type="number" id="editPage" min="1">
+          </div>
+          <div class="input-group">
+            <label>Color</label>
+            <div class="color-picker" id="editColorPicker">
+              <button class="color-swatch" data-color="#FF4D4D" style="--swatch-color: #FF4D4D"></button>
+              <button class="color-swatch" data-color="#FF824D" style="--swatch-color: #FF824D"></button>
+              <button class="color-swatch" data-color="#FFB347" style="--swatch-color: #FFB347"></button>
+              <button class="color-swatch" data-color="#FFD947" style="--swatch-color: #FFD947"></button>
+              <button class="color-swatch" data-color="#F9F871" style="--swatch-color: #F9F871"></button>
+              <button class="color-swatch" data-color="#B9F674" style="--swatch-color: #B9F674"></button>
+              <button class="color-swatch" data-color="#74F6A7" style="--swatch-color: #74F6A7"></button>
+              <button class="color-swatch" data-color="#47D9C4" style="--swatch-color: #47D9C4"></button>
+              <button class="color-swatch" data-color="#4DBBFF" style="--swatch-color: #4DBBFF"></button>
+              <button class="color-swatch" data-color="#4D7AFF" style="--swatch-color: #4D7AFF"></button>
+              <button class="color-swatch" data-color="#7A4DFF" style="--swatch-color: #7A4DFF"></button>
+              <button class="color-swatch" data-color="#B347FF" style="--swatch-color: #B347FF"></button>
+              <button class="color-swatch" data-color="#FF47D9" style="--swatch-color: #FF47D9"></button>
+              <button class="color-swatch" data-color="#FF4D82" style="--swatch-color: #FF4D82"></button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" id="cancelEdit">Cancel</button>
+          <button class="btn btn-primary" id="saveEdit">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
