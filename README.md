@@ -27,7 +27,7 @@ git clone https://github.com/davidmenggx/pdf-bookmark
 4. Click **Load unpacked** button<br><br>
 ![Load unpacked](imgs/load_unpacked.png)
 
-5. Select the `pdf-bookmark-extension` folder
+5. Select the `pdf-bookmark` folder
 
 6. The extension icon will appear in your toolbar<br><br>
 ![Action extension](imgs/active_extension.png)
@@ -77,3 +77,4 @@ All bookmarks are stored locally on your device
 ## License
 
 MIT
+
